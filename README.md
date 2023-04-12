@@ -1,4 +1,4 @@
-# Alice Engine
+# Box Renderer
 A basic "sandbox" game  engine for learning purposes.
 
 
