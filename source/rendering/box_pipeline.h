@@ -5,18 +5,8 @@
 #include "mesh.h"
 #include "dmesh.h"
 
-namespace BoxRenderer{
-
-/* Convenience function to ease initialization */
-template <typename PipelineT>
-DMesh toDevice(const PipelineT& pipeline, const Mesh& mesh, GPUID usage = GL_STATIC_DRAW)
+namespace BoxRenderer
 {
-    DMesh dMesh;
-    dMesh.initBuffers();
-    pipeline.setupVAO(dMesh);
-    dMesh.fillBuffers(mesh, usage);
-    return dMesh;
-}
 
 struct ColorBoxShaderProgram
 {

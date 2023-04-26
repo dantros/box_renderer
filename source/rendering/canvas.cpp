@@ -126,6 +126,17 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
     controller->press(aliceKey);
 }
 
+/* Convenience function to ease initialization */
+template <typename PipelineT>
+DMesh toDevice(const PipelineT& pipeline, const Mesh& mesh, GPUID usage = GL_STATIC_DRAW)
+{
+    DMesh dMesh;
+    dMesh.initBuffers();
+    pipeline.setupVAO(dMesh);
+    dMesh.fillBuffers(mesh, usage);
+    return dMesh;
+}
+
 void Canvas::drawScene(::Alice::Controller& controller, std::function<void(float deltaTime)> updateFunction)
 {
     glfwSetWindowUserPointer(mWindow->glfwWindow, &controller);
