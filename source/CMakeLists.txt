@@ -10,6 +10,8 @@ add_library(box_renderer STATIC
     rendering/mesh.cpp
     rendering/dvertex.h
     rendering/dvertex.cpp
+    rendering/duniform.h
+    rendering/duniform.cpp
     rendering/dmesh.h
     rendering/dmesh.cpp
     rendering/canvas.h

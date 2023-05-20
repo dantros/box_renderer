@@ -7,6 +7,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "box_pipeline.h"
 #include "performance_monitor.h"
+#include "duniform.h"
 
 namespace BoxRenderer
 {
@@ -219,11 +220,17 @@ void Canvas::drawScene(::Alice::Controller& controller, std::function<void(float
             auto& color = boxIt->color();
             auto& position = boxIt->position();
             boxIt++;
-            glUniform3f(glGetUniformLocation(pipeline.shaderProgram, "color"), color.r, color.g, color.b);
+
+            UniformValues uniformValues;
+
+            uniformValues.push_back(std::make_shared<Vec3UniformValue>(pipeline.shaderProgram, "color", glm::vec3(color.r, color.g, color.b)));
 
             glm::mat4 modelTransform(1.0f);
             modelTransform = glm::translate(modelTransform, glm::vec3(position.x, position.y, 0.0f));
-            glUniformMatrix4fv(glGetUniformLocation(pipeline.shaderProgram, "modelTransform"), 1, GL_FALSE, &modelTransform[0][0]);
+            uniformValues.push_back(std::make_shared<Mat4UniformValue>(pipeline.shaderProgram, "modelTransform", modelTransform));
+
+            setupUniforms(uniformValues);
+
             dMesh.drawCall();
         }
     
