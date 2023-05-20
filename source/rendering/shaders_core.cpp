@@ -2,12 +2,13 @@
 #include "shaders_core.h"
 #include <glad/glad.h>
 #include <vector>
+#include <string>
 
 namespace BoxRenderer{
 
 namespace
 {
-GLuint compileShader(GLenum type, std::string const& sourceCode)
+GLuint compileShader(GLenum type, const std::string& sourceCode)
 {
 	auto shaderCodeChars = sourceCode.c_str();
 
