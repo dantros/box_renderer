@@ -144,17 +144,6 @@ void setupVAO(DMesh& dMesh, GPUID shaderProgram)
     glBindVertexArray(0);
 }
 
-/* Convenience function to ease initialization */
-template <typename PipelineT>
-DMesh toDevice(const PipelineT& pipeline, const Mesh& mesh, GPUID usage = GL_STATIC_DRAW)
-{
-    DMesh dMesh;
-    dMesh.initBuffers();
-    setupVAO(dMesh, pipeline.shaderProgram);
-    dMesh.fillBuffers(mesh, usage);
-    return dMesh;
-}
-
 void Canvas::drawScene(::Alice::Controller& controller, std::function<void(float deltaTime)> updateFunction)
 {
     glfwSetWindowUserPointer(mWindow->glfwWindow, &controller);
@@ -174,7 +163,10 @@ void Canvas::drawScene(::Alice::Controller& controller, std::function<void(float
     for (auto& box : mContent)
     {
         Mesh mesh = generateMesh(box);
-        DMesh dMesh = toDevice(pipeline, mesh);
+        DMesh dMesh;
+        dMesh.initBuffers();
+        setupVAO(dMesh, pipeline.shaderProgram);
+        dMesh.fillBuffers(mesh, GL_STATIC_DRAW);
         dContent.push_back(dMesh);
     }
     
