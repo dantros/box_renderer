@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include "dvertex.h"
 
 namespace BoxRenderer
 {
@@ -19,6 +20,7 @@ struct Mesh
     Indices indices;
     std::string texture = "";
     std::size_t stride;
+    DVertex dvertex;
 
     Mesh(std::size_t stride_) : vertices{}, indices{}, texture(""), stride(stride_) {}
 };

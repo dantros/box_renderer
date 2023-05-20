@@ -3,6 +3,7 @@
 #include "mesh.h"
 #include <iostream>
 #include "shaders_core.h"
+#include "dvertex.h"
 
 namespace BoxRenderer{
 
@@ -15,6 +16,7 @@ struct DMesh
 {
     GPUID vao, vbo, ebo, texture;
     std::size_t size;
+    DVertex dvertex;
 
     /*
     Convenience function for initialization of OpenGL buffers.

@@ -135,10 +135,19 @@ void setupVAO(DMesh& dMesh, GPUID shaderProgram)
     glBindBuffer(GL_ARRAY_BUFFER, dMesh.vbo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, dMesh.ebo);
 
-    // position attribute
-    auto position = glGetAttribLocation(shaderProgram, "position");
-    glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (void*)0);
-    glEnableVertexAttribArray(position);
+    for (auto& vertexDataAttribute : dMesh.dvertex)
+    {
+        const auto& attributeName = vertexDataAttribute.attributeName.c_str();
+        const auto attributeLocation = glGetAttribLocation(shaderProgram, attributeName);
+
+        const int numberOfFloats = vertexDataAttribute.arity();
+
+        if (numberOfFloats <= 0)
+            throw;
+
+        glVertexAttribPointer(attributeLocation, numberOfFloats, GL_FLOAT, GL_FALSE, numberOfFloats * sizeof(GLfloat), (void*)0);
+        glEnableVertexAttribArray(attributeLocation);
+    }
 
     // Unbinding current VAO
     glBindVertexArray(0);
@@ -162,11 +171,17 @@ void Canvas::drawScene(::Alice::Controller& controller, std::function<void(float
     
     for (auto& box : mContent)
     {
+        DVertex dvertex{{"position", VertexDataType::Vec3}};
+
         Mesh mesh = generateMesh(box);
+        mesh.dvertex = dvertex;
+
         DMesh dMesh;
+        dMesh.dvertex = dvertex;
         dMesh.initBuffers();
         setupVAO(dMesh, pipeline.shaderProgram);
         dMesh.fillBuffers(mesh, GL_STATIC_DRAW);
+
         dContent.push_back(dMesh);
     }
     

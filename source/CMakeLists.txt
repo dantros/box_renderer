@@ -8,6 +8,8 @@ add_library(box_renderer STATIC
     rendering/box.cpp
     rendering/mesh.h
     rendering/mesh.cpp
+    rendering/dvertex.h
+    rendering/dvertex.cpp
     rendering/dmesh.h
     rendering/dmesh.cpp
     rendering/canvas.h
