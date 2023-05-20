@@ -5,9 +5,12 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include "box_pipeline.h"
 #include "performance_monitor.h"
 #include "duniform.h"
+#include "shader_program_loader.h"
+#include "mesh.h"
+#include "dmesh.h"
+#include "shaders_core.h"
 
 namespace BoxRenderer
 {
@@ -163,8 +166,8 @@ void Canvas::drawScene(::Alice::Controller& controller, std::function<void(float
 
     // Prepare GPU ---
 
-    // Creating our shader program and telling OpenGL to use it
-    ColorBoxShaderProgram pipeline;
+    // Creating our shader program
+    ShaderProgram pipeline = createColorShaderProgram();
 
     //TODO split static vs dynamic content
     std::vector<DMesh>  dContent;

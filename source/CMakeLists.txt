@@ -16,12 +16,14 @@ add_library(box_renderer STATIC
     rendering/dmesh.cpp
     rendering/canvas.h
     rendering/canvas.cpp
-    rendering/box_pipeline.h
-    rendering/box_pipeline.cpp
     rendering/performance_monitor.h
     rendering/performance_monitor.cpp
     rendering/shaders_core.h
     rendering/shaders_core.cpp
+    rendering/shader_program.h
+    rendering/shader_program.cpp
+    rendering/shader_program_loader.h
+    rendering/shader_program_loader.cpp
     inputs/keyboard.h
     inputs/keyboard.cpp
     inputs/controller.h
