@@ -38,22 +38,4 @@ ColorBoxShaderProgram::ColorBoxShaderProgram()
     });
 }
 
-void ColorBoxShaderProgram::setupVAO(DMesh& dMesh) const
-{
-    // Binding VAO to setup
-    glBindVertexArray(dMesh.vao);
-
-    // Binding buffers to the current VAO
-    glBindBuffer(GL_ARRAY_BUFFER, dMesh.vbo);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, dMesh.ebo);
-
-    // position attribute
-    auto position = glGetAttribLocation(shaderProgram, "position");
-    glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (void*)0);
-    glEnableVertexAttribArray(position);
-
-    // Unbinding current VAO
-    glBindVertexArray(0);
-}
-
 } // namespace BoxRenderer

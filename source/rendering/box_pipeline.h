@@ -13,8 +13,6 @@ struct ColorBoxShaderProgram
     GPUID shaderProgram;
 
     ColorBoxShaderProgram();
-
-    void setupVAO(DMesh& dMesh) const;
 };
 
 
