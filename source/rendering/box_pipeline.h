@@ -15,8 +15,6 @@ struct ColorBoxShaderProgram
     ColorBoxShaderProgram();
 
     void setupVAO(DMesh& dMesh) const;
-
-    void drawCall(const DMesh& dMesh) const;
 };
 
 

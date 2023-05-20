@@ -199,7 +199,7 @@ void Canvas::drawScene(::Alice::Controller& controller, std::function<void(float
             glm::mat4 modelTransform(1.0f);
             modelTransform = glm::translate(modelTransform, glm::vec3(position.x, position.y, 0.0f));
             glUniformMatrix4fv(glGetUniformLocation(pipeline.shaderProgram, "modelTransform"), 1, GL_FALSE, &modelTransform[0][0]);
-            pipeline.drawCall(dMesh);
+            dMesh.drawCall();
         }
     
         // Once the drawing is rendered, buffers are swap so an uncomplete drawing is never seen.

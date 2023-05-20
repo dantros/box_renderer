@@ -28,6 +28,8 @@ struct DMesh
 
     void fillBuffers(const Mesh& mesh, GPUID usage);
 
+    void drawCall();
+
     /* Freeing GPU memory */
     void clear();
 };

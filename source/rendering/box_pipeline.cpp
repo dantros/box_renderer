@@ -56,14 +56,4 @@ void ColorBoxShaderProgram::setupVAO(DMesh& dMesh) const
     glBindVertexArray(0);
 }
 
-void ColorBoxShaderProgram::drawCall(const DMesh& dMesh) const
-{
-    // Binding the VAO and executing the draw call
-    glBindVertexArray(dMesh.vao);
-    glDrawElements(GL_TRIANGLES, dMesh.size, GL_UNSIGNED_INT, nullptr);
-
-    // Unbind the current VAO
-    glBindVertexArray(0);
-}
-
 } // namespace BoxRenderer

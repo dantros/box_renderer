@@ -23,6 +23,19 @@ void DMesh::fillBuffers(const Mesh& mesh, GPUID usage)
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh.indices.size() * SIZE_IN_BYTES, mesh.indices.data(), usage);
 }
 
+void DMesh::drawCall()
+{
+    // Binding the VAO and executing the draw call
+    glBindVertexArray(vao);
+
+    /* TODO bind textures if any! */
+
+    glDrawElements(GL_TRIANGLES, size, GL_UNSIGNED_INT, nullptr);
+
+    // Unbind the current VAO
+    glBindVertexArray(0);
+}
+
 void DMesh::clear()
 {
     glDeleteVertexArrays(1, &vao);
