@@ -1,10 +1,11 @@
 #pragma once
 
 #include <iostream>
-#include "mesh.h"
-#include "dmesh.h"
 
-namespace BoxRenderer{
+namespace BoxRenderer
+{
+
+using GPUID = unsigned int;
 
 struct ShaderCode
 {

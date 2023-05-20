@@ -1,7 +1,8 @@
 #pragma once
 
-#include <iostream>
 #include "mesh.h"
+#include <iostream>
+#include "shaders_core.h"
 
 namespace BoxRenderer{
 
@@ -9,8 +10,6 @@ namespace BoxRenderer{
  * 1 byte = 8 bits
  */
 constexpr unsigned int SIZE_IN_BYTES = 4;
-
-using GPUID = unsigned int;
 
 struct DMesh
 {
