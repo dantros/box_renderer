@@ -140,17 +140,16 @@ void setupVAO(DMesh& dMesh, GPUID shaderProgram)
     glBindBuffer(GL_ARRAY_BUFFER, dMesh.vbo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, dMesh.ebo);
 
+    unsigned int offset = 0;
+
     for (auto& vertexDataAttribute : dMesh.dvertex)
     {
         const auto& attributeName = vertexDataAttribute.attributeName.c_str();
         const auto attributeLocation = glGetAttribLocation(shaderProgram, attributeName);
 
-        const int numberOfFloats = vertexDataAttribute.arity();
+        const unsigned int numberOfFloats = vertexDataAttribute.arity();
 
-        if (numberOfFloats <= 0)
-            throw;
-
-        glVertexAttribPointer(attributeLocation, numberOfFloats, GL_FLOAT, GL_FALSE, numberOfFloats * sizeof(GLfloat), (void*)0);
+        glVertexAttribPointer(attributeLocation, numberOfFloats, GL_FLOAT, GL_FALSE, numberOfFloats * sizeof(GLfloat), (void*)(offset * sizeof(GLfloat)));
         glEnableVertexAttribArray(attributeLocation);
     }
 
