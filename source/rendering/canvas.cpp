@@ -151,6 +151,8 @@ void setupVAO(DMesh& dMesh, GPUID shaderProgram)
 
         glVertexAttribPointer(attributeLocation, numberOfFloats, GL_FLOAT, GL_FALSE, numberOfFloats * sizeof(GLfloat), (void*)(offset * sizeof(GLfloat)));
         glEnableVertexAttribArray(attributeLocation);
+
+        offset += numberOfFloats;
     }
 
     // Unbinding current VAO
