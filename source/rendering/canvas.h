@@ -3,6 +3,7 @@
 #include <vector>
 #include "../inputs/controller.h"
 #include "box.h"
+#include "world.h"
 
 namespace BoxRenderer
 {
@@ -49,7 +50,7 @@ private:
     unsigned int mWidth, mHeight;
     std::string mTitle;
     Color mClearColor;
-    std::vector<Box> mContent;
+    World mWorld;
 
     // Forward declaration to interface with third party libs
     struct Window;

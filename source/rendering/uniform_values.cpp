@@ -1,5 +1,5 @@
 
-#include "duniform.h"
+#include "uniform_values.h"
 #include <glad/glad.h>
 
 namespace BoxRenderer

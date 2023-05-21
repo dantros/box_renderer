@@ -7,6 +7,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "performance_monitor.h"
 #include "duniform.h"
+#include "uniform_values.h"
 #include "shader_program_loader.h"
 #include "mesh.h"
 #include "dmesh.h"
@@ -28,7 +29,7 @@ Canvas::Canvas(unsigned int width, unsigned int height, std::string const& title
     mWidth(width),
     mHeight(height),
     mTitle(title),
-    mContent{}
+    mWorld()
 {
     // Initialize glfw
     glfwInit();
@@ -73,8 +74,8 @@ void Canvas::setBackgroundColor(Color const& color)
 
 BoxId Canvas::addBox(const Box& box)
 {
-    const BoxId newId = mContent.size();
-    mContent.push_back(box);
+    const BoxId newId = mWorld.boxes.size();
+    mWorld.boxes.push_back(box);
     return newId;
 }
 
@@ -177,9 +178,9 @@ void Canvas::drawScene(::Alice::Controller& controller, std::function<void(float
 
     //TODO split static vs dynamic content
     std::vector<DMesh>  dContent;
-    dContent.reserve(mContent.size());
+    dContent.reserve(mWorld.boxes.size());
     
-    for (auto& box : mContent)
+    for (auto& box : mWorld.boxes)
     {
         auto& pipeline = shaderPrograms.at(shaderProgramId);
 
@@ -222,7 +223,7 @@ void Canvas::drawScene(::Alice::Controller& controller, std::function<void(float
         glClear(GL_COLOR_BUFFER_BIT);
 
         // TODO: this should be way prettier. use an extended pair for mContent
-        auto boxIt = mContent.begin();
+        auto boxIt = mWorld.boxes.begin();
 
         for (auto& dMesh : dContent)
         {
@@ -253,7 +254,7 @@ void Canvas::drawScene(::Alice::Controller& controller, std::function<void(float
 
 void Canvas::clear()
 {
-    mContent.clear();
+    mWorld.boxes.clear();
 
     // Clearing the screen
     glClear(GL_COLOR_BUFFER_BIT);
@@ -261,22 +262,22 @@ void Canvas::clear()
 
 Box& Canvas::getBox(BoxId boxId)
 {
-    return mContent.at(boxId);
+    return mWorld.boxes.at(boxId);
 }
 
 Box const& Canvas::getBox(BoxId boxId) const
 {
-    return mContent.at(boxId);
+    return mWorld.boxes.at(boxId);
 }
 
 std::vector<Box>& Canvas::getCanvasContent()
 {
-    return mContent;
+    return mWorld.boxes;
 }
 
 std::vector<Box> const& Canvas::getCanvasContent() const
 {
-    return mContent;
+    return mWorld.boxes;
 }
 
 Canvas::~Canvas()

@@ -3,6 +3,7 @@
 #include <string>
 #include "dvertex.h"
 #include "duniform.h"
+#include "shaders_core.h"
 
 namespace BoxRenderer
 {

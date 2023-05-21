@@ -1,5 +1,6 @@
 
 add_library(box_renderer STATIC
+    rendering/world.h
 	rendering/vec2.h
     rendering/vec2.cpp
     rendering/color.h
@@ -11,7 +12,8 @@ add_library(box_renderer STATIC
     rendering/dvertex.h
     rendering/dvertex.cpp
     rendering/duniform.h
-    rendering/duniform.cpp
+    rendering/uniform_values.h
+    rendering/uniform_values.cpp
     rendering/dmesh.h
     rendering/dmesh.cpp
     rendering/canvas.h
