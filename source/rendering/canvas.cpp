@@ -11,6 +11,7 @@
 #include "mesh.h"
 #include "dmesh.h"
 #include "shaders_core.h"
+#include "shader_program_container.h"
 
 namespace BoxRenderer
 {
@@ -166,8 +167,12 @@ void Canvas::drawScene(::Alice::Controller& controller, std::function<void(float
 
     // Prepare GPU ---
 
-    // Creating our shader program
-    ShaderProgram pipeline = createColorShaderProgram();
+    // Creating our shader programs
+
+    ShaderProgramContainer shaderPrograms;
+    shaderPrograms.emplace_back(createColorShaderProgram());
+
+    ShaderProgramId shaderProgramId = 0;
 
     //TODO split static vs dynamic content
     std::vector<DMesh>  dContent;
@@ -175,6 +180,8 @@ void Canvas::drawScene(::Alice::Controller& controller, std::function<void(float
     
     for (auto& box : mContent)
     {
+        auto& pipeline = shaderPrograms.at(shaderProgramId);
+
         DVertex dvertex{{"position", VertexDataType::Vec3}};
 
         Mesh mesh = generateMesh(box);
@@ -188,8 +195,6 @@ void Canvas::drawScene(::Alice::Controller& controller, std::function<void(float
 
         dContent.push_back(dMesh);
     }
-    
-    glUseProgram(pipeline.shaderProgram);
 
     // Setting up the clear screen color
     glClearColor(mClearColor.r, mClearColor.g, mClearColor.b, mClearColor.a);
@@ -220,6 +225,9 @@ void Canvas::drawScene(::Alice::Controller& controller, std::function<void(float
 
         for (auto& dMesh : dContent)
         {
+            auto& pipeline = shaderPrograms.at(shaderProgramId);
+            glUseProgram(pipeline.shaderProgram);
+
             auto& color = boxIt->color();
             auto& position = boxIt->position();
             boxIt++;

@@ -22,6 +22,7 @@ add_library(box_renderer STATIC
     rendering/shaders_core.cpp
     rendering/shader_program.h
     rendering/shader_program.cpp
+    rendering/shader_program_container.h
     rendering/shader_program_loader.h
     rendering/shader_program_loader.cpp
     inputs/keyboard.h
