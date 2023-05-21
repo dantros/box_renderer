@@ -6,7 +6,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include "performance_monitor.h"
-#include "duniform.h"
+#include "uniforms_description.h"
 #include "uniform_values.h"
 #include "shader_program_loader.h"
 #include "mesh.h"

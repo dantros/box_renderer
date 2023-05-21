@@ -2,7 +2,7 @@
 
 #include <string>
 #include "dvertex.h"
-#include "duniform.h"
+#include "uniforms_description.h"
 #include "shaders_core.h"
 
 namespace BoxRenderer

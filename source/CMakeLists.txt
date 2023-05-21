@@ -11,7 +11,7 @@ add_library(box_renderer STATIC
     rendering/mesh.cpp
     rendering/dvertex.h
     rendering/dvertex.cpp
-    rendering/duniform.h
+    rendering/uniforms_description.h
     rendering/uniform_values.h
     rendering/uniform_values.cpp
     rendering/dmesh.h
