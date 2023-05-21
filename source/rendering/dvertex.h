@@ -14,9 +14,11 @@ struct VertexDataAttribute
     VertexDataType vertexDataType;
 
     /* Number of floats to represent this vertex data attribute */
-    int arity();
+    unsigned int arity() const;
 };
 
 using DVertex = std::vector<VertexDataAttribute>;
+
+unsigned int arity(const DVertex& dvertex);
 
 } // namespace BoxRenderer

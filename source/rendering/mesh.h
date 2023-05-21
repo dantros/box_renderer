@@ -18,11 +18,7 @@ struct Mesh
 {
     Vertices vertices;
     Indices indices;
-    std::string texture = "";
-    std::size_t stride;
     DVertex dvertex;
-
-    Mesh(std::size_t stride_) : vertices{}, indices{}, texture(""), stride(stride_) {}
 };
 
 Mesh join(const Mesh& rhs, const Mesh& lhs);

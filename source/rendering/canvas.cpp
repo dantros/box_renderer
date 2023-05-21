@@ -80,7 +80,7 @@ BoxId Canvas::addBox(const Box& box)
 
 Mesh generateMesh(const Box& box)
 {
-    Mesh mesh(3);
+    Mesh mesh;
 
     mesh.vertices.reserve(12);
 

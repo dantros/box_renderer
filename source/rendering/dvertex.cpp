@@ -4,7 +4,7 @@
 namespace BoxRenderer
 {
 
-int VertexDataAttribute::arity()
+unsigned int VertexDataAttribute::arity() const
 {
     switch (vertexDataType)
     {
@@ -26,8 +26,18 @@ int VertexDataAttribute::arity()
         return 3;*/
     default:
         throw;
-        return -1;
+        return 0;
     }
+}
+
+unsigned int arity(const DVertex &dvertex)
+{
+    unsigned int totalArity = 0;
+
+    for (auto& vertexAttribute : dvertex)
+        totalArity += vertexAttribute.arity();
+
+    return totalArity;
 }
 
 } // namespace BoxRenderer
