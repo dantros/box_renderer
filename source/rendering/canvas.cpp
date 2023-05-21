@@ -170,9 +170,7 @@ void Canvas::drawScene(::Alice::Controller& controller, std::function<void(float
     // Prepare GPU ---
 
     // Creating our shader programs
-
-    ShaderProgramContainer shaderPrograms;
-    shaderPrograms.emplace_back(createColorShaderProgram());
+    mWorld.shaderPrograms.emplace_back(createColorShaderProgram());
 
     ShaderProgramId shaderProgramId = 0;
 
@@ -182,7 +180,7 @@ void Canvas::drawScene(::Alice::Controller& controller, std::function<void(float
     
     for (auto& box : mWorld.boxes)
     {
-        auto& pipeline = shaderPrograms.at(shaderProgramId);
+        auto& pipeline = mWorld.shaderPrograms.at(shaderProgramId);
 
         DVertex dvertex{{"position", VertexDataType::Vec3}};
 
@@ -227,7 +225,7 @@ void Canvas::drawScene(::Alice::Controller& controller, std::function<void(float
 
         for (auto& dMesh : dContent)
         {
-            auto& pipeline = shaderPrograms.at(shaderProgramId);
+            auto& pipeline = mWorld.shaderPrograms.at(shaderProgramId);
             glUseProgram(pipeline.shaderProgram);
 
             auto& color = boxIt->color();
