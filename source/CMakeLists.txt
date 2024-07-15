@@ -30,7 +30,10 @@ add_library(box_renderer STATIC
     inputs/keyboard.h
     inputs/keyboard.cpp
     inputs/controller.h
-    inputs/controller.cpp)
+    inputs/controller.cpp
+    inputs/joystick.h
+    inputs/joystick.cpp
+    checks.h)
 
 set_property(TARGET box_renderer PROPERTY CXX_STANDARD 20)
 target_link_libraries(box_renderer PRIVATE ${THIRD_PARTY_LIBRARIES})
